@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int pin, choice;
+    double balance = 5000.00;
+    double amount;
+
+    cout << "=============================\n";
+    cout << "       SIMPLE ATM SYSTEM     \n";
+    cout << "=============================\n";
+
+    // PIN verification
+    cout << "Enter your PIN: ";
+    cin >> pin;
+
+    if (pin != 1234) {
+        cout << "Incorrect PIN. Access Denied!\n";
+        return 0;
+    }
+
+    cout << "\nLogin Successful!\n";
+
+    // ATM Menu
+    do {
+        cout << "\n========== ATM MENU ==========\n";
+        cout << "1. Check Balance\n";
+        cout << "2. Deposit Money\n";
+        cout << "3. Withdraw Money\n";
+        cout << "4. Exit\n";
+        cout << "==============================\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+            case 1:
+                cout << "\nYour balance is: Rs. "
+                     << balance << endl;
+                break;
+
+            case 2:
+                cout << "\nEnter amount to deposit: Rs. ";
+                cin >> amount;
+
+                if (amount > 0) {
+                    balance += amount;
+                    cout << "Deposit successful!\n";
+                    cout << "New balance: Rs. "
+                         << balance << endl;
+                } else {
+                    cout << "Invalid amount!\n";
+                }
+                break;
+
+            case 3:
+                cout << "\nEnter amount to withdraw: Rs. ";
+                cin >> amount;
+
+                if (amount <= 0) {
+                    cout << "Invalid amount!\n";
+                }
+                else if (amount > balance) {
+                    cout << "Insufficient balance!\n";
+                }
+                else {
+                    balance -= amount;
+                    cout << "Withdrawal successful!\n";
+                    cout << "Remaining balance: Rs. "
+                         << balance << endl;
+                }
+                break;
+
+            case 4:
+                cout << "\nThank you for using the ATM!\n";
+                break;
+
+            default:
+                cout << "\nInvalid choice! Please try again.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
